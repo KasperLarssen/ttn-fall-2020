@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+      - master
+      - assignment/*
+      - solution/*
+
+pool:
+  vmImage: "windows-2019"
+
+stages:
+  - stage: STAGE_NAME
+    displayName: PRETTY_STAGE_NAME
+    jobs:
+      - job: CI
+        # This job installs all dependencies as a clean slate.
+        steps:
+          - task: Npm@1
+            inputs:
+              command: "custom"
+              workingDir: "spa-client"
+              customCommand: "run cit"
+          - task: CmdLine@2
+            inputs:
+              script: |
+                echo Hello world 1
+                echo Hello world 2
+                echo Hello world 3
