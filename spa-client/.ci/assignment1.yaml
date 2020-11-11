@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+      - master
+      - assignment/*
+      - solution/*
+
+pool:
+  vmImage: "windows-2019"
+
+stages:
+  - stage: STAGE_NAME
+    displayName: PRETTY_STAGE_NAME
+    jobs:
+      - job: JOB_1_NAME
+        steps:
+          - task: Npm@1 #this is the name of the core task module provided by Azure.
+            displayName: TASK_NAME
+            inputs:
+              command: install
+              workingDir: spa-client
